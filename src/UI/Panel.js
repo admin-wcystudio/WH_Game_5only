@@ -487,15 +487,12 @@ export class QuestionPanel extends Phaser.GameObjects.Container {
     nextQuestion() {
         this.currentIndex++;
         if (this.currentIndex < this.questions.length) {
-            if (this.scene.gameTimer) {
-                this.scene.gameTimer.reset(this.scene.roundPerSeconds);
-                this.scene.gameTimer.start();
-            }
             this.confirmBtn.setVisible(true);
             this.selectedAnswerIndex = -1;
             this.showQuestion();
         } else {
             console.log('All questions answered correctly!');
+
             this.scene.onRoundWin();
             if (this.onComplete) this.onComplete();
             this.destroy(); // 3 題都答完了
